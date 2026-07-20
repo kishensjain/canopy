@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { protect } from "../middleware/auth.js";
-import { upload } from "../middleware/upload.js";
+import { protect } from "../middleware/auth";
+import { upload } from "../middleware/upload";
 import {
   listTrees,
   getTree,
