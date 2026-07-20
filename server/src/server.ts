@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db";
 import { clerkMiddleware } from "@clerk/express";
+import { errorHandler, notFoundHandler } from "./middleware/error.middleware";
 
 dotenv.config({ override: true });
 
@@ -11,6 +12,9 @@ app.use(express.json());
 app.use(clerkMiddleware());
 
 const PORT = process.env.PORT || 5002;
+
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 const startServer = async () => {
   try {
