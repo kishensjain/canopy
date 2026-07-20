@@ -1,10 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db";
+import { clerkMiddleware } from "@clerk/express";
 
 dotenv.config({ override: true });
 
 const app = express();
+
+app.use(express.json());
+app.use(clerkMiddleware());
 
 const PORT = process.env.PORT || 5002;
 
