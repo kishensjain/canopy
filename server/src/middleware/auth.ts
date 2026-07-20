@@ -12,7 +12,7 @@ export const protect = (req: Request, res: Response, next: NextFunction) => {
     return;
   }
 
-  req.userId = userId;
+  req.userId = userId; // now any controller can simply do: const userId = req.userId;
 
   next();
 };
