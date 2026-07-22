@@ -1,11 +1,5 @@
 import mongoose from "mongoose";
 
-interface WateringLog {
-  date: Date;
-  note: string;
-  loggedBy: string;
-}
-
 interface Tree {
   species: string;
   nickname: string;
@@ -14,23 +8,12 @@ interface Tree {
   plantedDate: Date;
   heightCm: number;
   healthStatus: string;
-  photoUrl: string;
   location: {
     lat: number;
     lng: number;
   };
-  wateringLogs: WateringLog[];
   notes: string;
 }
-
-const wateringLogSchema = new mongoose.Schema<WateringLog>(
-  {
-    date: { type: Date, default: Date.now },
-    note: { type: String, default: "" },
-    loggedBy: { type: String }, // Clerk user id
-  },
-  { _id: false },
-);
 
 const treeSchema = new mongoose.Schema<Tree>(
   {
@@ -49,12 +32,10 @@ const treeSchema = new mongoose.Schema<Tree>(
       enum: ["thriving", "healthy", "struggling", "needs-attention"],
       default: "healthy",
     },
-    photoUrl: { type: String, default: "" },
     location: {
       lat: { type: Number },
       lng: { type: Number },
     },
-    wateringLogs: [wateringLogSchema],
     notes: { type: String, default: "" },
   },
   { timestamps: true },

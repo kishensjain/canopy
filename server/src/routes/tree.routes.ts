@@ -1,13 +1,11 @@
 import { Router } from "express";
 import { protect } from "../middleware/auth";
-import { upload } from "../middleware/upload";
+// import { upload } from "../middleware/upload";
 import {
   listTrees,
   getTree,
   createTree,
   updateTree,
-  addWateringLog,
-  uploadTreePhoto,
   deleteTree,
 } from "../controllers/tree.controller";
 
@@ -25,11 +23,5 @@ router
   .get(getTree) // Public
   .patch(protect, updateTree)
   .delete(protect, deleteTree);
-
-// /trees/:id/water
-router.post("/:id/water", protect, addWateringLog);
-
-// /trees/:id/photo
-router.post("/:id/photo", protect, upload.single("photo"), uploadTreePhoto);
 
 export default router;

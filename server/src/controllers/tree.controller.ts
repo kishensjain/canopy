@@ -60,7 +60,6 @@ export async function createTree(
       garden,
       plantedDate,
       heightCm,
-      photoUrl,
       location,
       notes,
     } = req.body;
@@ -79,7 +78,6 @@ export async function createTree(
       plantedBy: userId,
       plantedDate,
       heightCm,
-      photoUrl,
       location,
       notes,
     });
@@ -117,34 +115,6 @@ export async function updateTree(
         tree.set(field, req.body[field]);
       }
     }
-
-    await tree.save();
-
-    res.status(200).json(tree);
-  } catch (error) {
-    next(error);
-  }
-}
-
-export async function uploadTreePhoto(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
-  try {
-    const tree = await Tree.findById(req.params.id);
-
-    if (!tree) {
-      res.status(404).json({ error: "Tree not found" });
-      return;
-    }
-
-    if (!req.file) {
-      res.status(400).json({ error: "No image file received" });
-      return;
-    }
-
-    tree.photoUrl = `/uploads/${req.file.filename}`;
 
     await tree.save();
 
