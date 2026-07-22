@@ -9,7 +9,7 @@ interface WateringLog {
 interface Tree {
   species: string;
   nickname: string;
-  garden: mongoose.Schema.Types.ObjectId;
+  garden: mongoose.Types.ObjectId;
   plantedBy: string;
   plantedDate: Date;
   heightCm: number;
