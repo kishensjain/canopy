@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+body {
+  font-family: "Inter", sans-serif;
+  color: #1c2321;
+}
+
+.font-display {
+  font-family: "Fraunces", serif;
+  font-optical-sizing: auto;
+}
+
+/* visible focus ring for keyboard users, kept even where Tailwind's reset hides it */
+:focus-visible {
+  outline: 2px solid #e9b44c;
+  outline-offset: 2px;
+}
